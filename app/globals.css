@@ -17,7 +17,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  @apply text-slate-800;
 }
 
 @layer utilities {

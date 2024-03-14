@@ -1,7 +1,12 @@
+import Packages from "@/app/components/packages";
+import { ModalProvider } from "@/hooks/useModal";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    </main>
+    <ModalProvider>
+      <main className="flex flex-col items-center justify-between min-h-screen py-24">
+        <Packages />
+      </main>
+    </ModalProvider>
   );
 }
