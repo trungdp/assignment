@@ -1,6 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HYBRBASE Assignment
+
+For assignment description, see: https://hybrbase.notion.site/HYBRBASE-Full-stack-Coding-Challenge-29e4c2654fe64a09a17c50c08c9beb69
 
 ## Getting Started
+
+### Let's run first time in your local
 
 First, run the development server:
 
@@ -16,21 +20,74 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Now you has first look about this app, but you need do things to make sure it work normaly:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Set up authentication
 
-## Learn More
+#### Create your app and enable APIs:
 
-To learn more about Next.js, take a look at the following resources:
+This repo use `google-auth-library` and `google-spreadsheet` to authetication and run Google Spreadsheet Apis. You will need to create an app at [Google Developers Console](https://console.developers.google.com/) and enable Google Sheets API, as well as Google Drive API.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+More detail here: https://theoephraim.github.io/node-google-spreadsheet/#/guides/authentication?id=setting-up-your-quotapplicationquot
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Prepare Service account Credentials:
 
-## Deploy on Vercel
+Follow up this link to create and download your credentials file:
+https://theoephraim.github.io/node-google-spreadsheet/#/guides/authentication?id=service-account
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+After follow the link, you will get the credentials file, it look like:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```javascript
+{
+  "type": "service_account",
+  "project_id": "<your project name>",
+  "private_key_id": "",
+  "private_key": "<long key>",
+  "client_email": "",
+  "client_id": "",
+  "auth_uri": "",
+  "token_uri": "",
+  "auth_provider_x509_cert_url": "",
+  "client_x509_cert_url": "",
+  "universe_domain": "googleapis.com"
+}
+
+```
+
+The key we need now is `client_email` and `private_key`
+
+#### Prepare ENV file and get documentID:
+
+Create new `.env` file or run command:
+
+```
+cp .env.example .env
+```
+
+Fill `client_email` and `private_key` to `.env` file:
+
+```shell
+GOOGLE_SERVICE_ACCOUNT_EMAIL=<client_email>
+GOOGLE_PRIVATE_KEY=<private_key>
+GOOGLE_SHEET_ID=
+GOOGLE_USER_EMAIL=<your email to see the sheets>
+```
+
+Restart the local runner, and run this command to get sheet ID:
+
+```shell
+curl  -X POST 'http://localhost:3000/api/sheet/new'
+```
+
+Response of above command look like below(or your can get it in the link via email). Copy this `docId` to env file too.
+
+```json
+{
+  "ok": true,
+  "data": { "docId": "158ITRD9YSefgLvYGTJ-RE9TB3WryYEMONj5ayZXXXXX" }
+}
+```
+
+Now we already for test, open http://localhost:3000 with your browser to see the result.
+
+## Deploy
