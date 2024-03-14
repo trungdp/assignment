@@ -114,7 +114,7 @@ export const mockPackagesData: Package[] = [
         type: "text",
         name: "name",
         placeholder: "Your name",
-        value: "TrungDP",
+        value: "",
         validations: [
           {
             type: "required",
@@ -132,7 +132,7 @@ export const mockPackagesData: Package[] = [
         type: "email",
         name: "email",
         placeholder: "Email",
-        value: "trungtrs1998@gmail.com",
+        value: "",
         validations: [
           {
             type: "required",
@@ -149,7 +149,7 @@ export const mockPackagesData: Package[] = [
         type: "tel",
         name: "phone",
         placeholder: "Phone number",
-        value: "0334952304",
+        value: "",
         validations: [
           {
             type: "required",
