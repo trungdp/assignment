@@ -23,8 +23,15 @@ const Modal: FunctionComponent<ModalProps> = ({
   const modalRef: any = useRef();
   const packegeForm = getFieldsData<any>(selectedPackage?.fields || []);
 
-  const onSubmit = (value: any) => {
-    console.log(value);
+  const onSubmit = async (value: any) => {
+    const payload = { ...value, package: selectedPackage?.name };
+
+    await fetch("api/sheet/row", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+
+    setOpen(false);
   };
 
   const onCancelClick = () => {

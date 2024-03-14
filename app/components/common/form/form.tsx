@@ -6,6 +6,7 @@ import Radio from "./radio-group";
 import Checkbox from "./checkbox";
 import { DynamicField, SchemaForm } from "@/types";
 import { useState } from "react";
+import Button from "../button";
 
 interface IFormProps {
   onSubmit: (data: unknown) => void;
@@ -61,13 +62,7 @@ export const Form = ({ ...props }: IFormProps) => {
         <section className="flex-1 flex flex-col gap-3">
           {renderFields()}
         </section>
-        <button
-          className="text-white bg-slate-700 hover:bg-slate-900 font-bold px-6 py-3 rounded shadow outline-none focus:outline-none"
-          type="submit"
-          disabled={loading}
-        >
-          {labelButtonSubmit}
-        </button>
+        <Button loading={loading} label="Submit" />
       </form>
     </FormProvider>
   );
