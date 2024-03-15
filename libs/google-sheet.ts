@@ -5,7 +5,7 @@ export const HEADER_ROW = ["name", "email", "phone", "company", "package"];
 export const SHEET_NAME = "Packages";
 export const DOC_TITLE = "HYBRBASE";
 
-type RowData = {
+export type RowData = {
   name?: string;
   email?: string;
   phone?: string;

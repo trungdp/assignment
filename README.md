@@ -71,6 +71,8 @@ GOOGLE_SERVICE_ACCOUNT_EMAIL=<client_email>
 GOOGLE_PRIVATE_KEY=<private_key>
 GOOGLE_SHEET_ID=
 GOOGLE_USER_EMAIL=<your email to see the sheets>
+SENDGRID_API_KEY=
+SENDGRID_SENDER=
 ```
 
 Restart the local runner, and run this command to get sheet ID:
@@ -87,6 +89,18 @@ Response of above command look like below(or your can get it in the link via ema
   "data": { "docId": "158ITRD9YSefgLvYGTJ-RE9TB3WryYEMONj5ayZXXXXX" }
 }
 ```
+
+#### Prepare Email services:
+
+Setup your Sendgrid API key, follow up official documents: https://docs.sendgrid.com/ui/account-and-settings/api-keys
+
+The Sendgrid API key will look like
+
+```
+SG._zhYwJ6cTWGII52XXXXXX.ahxSH_U_0eeHUOXF7NgcoGL4-o8ofTb7EqKgXXXXXX
+```
+
+Update env file with your API key and sender email
 
 Now we already for test, open http://localhost:3000 with your browser to see the result.
 
